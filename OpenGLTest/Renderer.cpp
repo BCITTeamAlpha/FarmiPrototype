@@ -59,6 +59,8 @@ void GenerateBuffers(IRenderable &renderable) {
 }
 
 void PopulateBuffers(IRenderable &renderable) {
+	renderable._invalidated = false;
+
 	glBindBuffer(GL_ARRAY_BUFFER, renderable._vertexBufferLocation);
 	glBufferData(GL_ARRAY_BUFFER, renderable._vertices.size() * sizeof(glm::vec3), renderable._vertices.data(), GL_STATIC_DRAW);
 
@@ -171,6 +173,12 @@ int notMain(IRenderable **pp) {
 			if (*pp != NULL) {
 				AddToRenderables(**pp);
 				(*pp) = NULL;
+			}
+		}
+
+		for (auto renderable : renderables) {
+			if ((*renderable)._invalidated) {
+				PopulateBuffers(*renderable);
 			}
 		}
 
