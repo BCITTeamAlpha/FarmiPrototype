@@ -10,12 +10,11 @@
 #include "Planetoid.h"
 #include "Map.h"
 
-IRenderable *p, **pp, ***ppp = &pp;
+IRenderable *p, **pp = &p;
 
 void PassToRenderer(IRenderable &x) {
 	p = &x;
-	pp = &p;
-	while (*ppp != NULL) {
+	while (*pp != NULL) {
 		Sleep(1);
 	}
 }
@@ -26,7 +25,7 @@ std::vector<glm::vec3> quadNormals = { { 0, 0, 1 },{ 0, 0, 1 },{ 0, 0, 1 },{ 0, 
 std::vector<GLuint> quadElements = { 0, 1, 2, 2, 1, 3 };
 
 int main() {
-	Renderer renderer = Renderer(std::ref(ppp));
+	Renderer renderer = Renderer(std::ref(pp));
 
 	IRenderable R;
 	R._vertices = quadVertices;

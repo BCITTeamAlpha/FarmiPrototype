@@ -70,7 +70,7 @@ void AddToRenderables(IRenderable& renderable) {
 	renderables.push_back(&renderable);
 }
 
-int notMain(IRenderable ***ppp) {
+int notMain(IRenderable **pp) {
 	//Setup GLFW
 	glfwInit();
 
@@ -159,12 +159,10 @@ int notMain(IRenderable ***ppp) {
 		//Check for events like key pressed, mouse moves, etc.
 		glfwPollEvents();
 
-		if (ppp != NULL) {
-			if (*ppp != NULL) {
-				if (**ppp != NULL) {
-					AddToRenderables(***ppp);
-					(*ppp) = NULL;
-				}
+		if (pp != NULL) {
+			if (*pp != NULL) {
+				AddToRenderables(**pp);
+				(*pp) = NULL;
 			}
 		}
 
@@ -178,9 +176,9 @@ int notMain(IRenderable ***ppp) {
 	std::terminate();
 }
 
-Renderer::Renderer(IRenderable ***ppp) {
+Renderer::Renderer(IRenderable **pp) {
 	int i = 0;
-	renderThread = std::thread(notMain, std::ref(ppp));
+	renderThread = std::thread(notMain, std::ref(pp));
 }
 
 Renderer::~Renderer() {

@@ -21,7 +21,7 @@
 
 class Renderer {
 	public:
-		Renderer(IRenderable ***p);
+		Renderer(IRenderable **pp);
 		~Renderer();
 };
 
