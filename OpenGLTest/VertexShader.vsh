@@ -8,14 +8,15 @@ out vec4 v_color;
 out vec3 v_position;
 out vec3 v_normal;
 
-uniform mat4 modelView;
+uniform mat4 model;
+uniform mat4 view;
 uniform mat4 projection;
 
 void main() {
 	v_color = color;
 	v_normal = normalize(normal);
 
-	vec4 temp_position = modelView * vec4(position, 1.0);
+	vec4 temp_position = view * model * vec4(position, 1.0);
 	v_position = temp_position.xyz;
     gl_Position = projection * temp_position;
 }

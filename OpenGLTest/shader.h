@@ -1,8 +1,11 @@
 #ifndef SHADER_H
 #define SHADER_H
 
+#include <iostream>
 #include <string>
-#include "openglstuff.h"
+
+#define GLEW_STATIC
+#include <GL/glew.h>
 
 class Shader
 {

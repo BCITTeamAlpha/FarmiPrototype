@@ -6,21 +6,9 @@ using std::min;
 using std::max;
 
 
-Map::Map(unsigned int level) {
-	vector<Planetoid> planets;
-
-	// choose which level to generate
-	switch (level) {
-		default:
-			_height = 128;
-			_width = 128;
-			planets.push_back(Planetoid(48.0f, 88.0f, 16.0f));
-			planets.push_back(Planetoid(88.0f, 50.0f, 8.0f));
-			planets.push_back(Planetoid(32.0f, 32.0f, 32.0f));
-			planets.push_back(Planetoid(8.0f, 120.0f, 12.0f));
-			planets.push_back(Planetoid(120.0f, 120.0f, 48.0f));
-			planets.push_back(Planetoid(128.0f, 0.0f, 32.0f));
-	}
+Map::Map(vector<Planetoid> planets, int width, int height) {
+	_height = width;
+	_width = height;
 
 	_mapArray = new float[_height * _width];
 
