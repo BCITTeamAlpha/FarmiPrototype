@@ -2,5 +2,5 @@
 
 Sound::Sound()
 {
-
+    alGetError();
 }
