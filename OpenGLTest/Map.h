@@ -6,7 +6,7 @@
 
 class Map {
 	public:
-		Map(std::vector<Planetoid> planets, int width, int height);
+		Map(std::vector<Planetoid> &planets);
 		bool isSolid(int x, int y);
 		int height();
 		void explosion(Planetoid p);

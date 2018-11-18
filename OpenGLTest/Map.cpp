@@ -11,9 +11,26 @@ using std::min;
 using std::max;
 
 
-Map::Map(vector<Planetoid> planets, int width, int height) {
-	_height = width;
-	_width = height;
+Map::Map(vector<Planetoid> &planets) {
+	float max_x = numeric_limits<float>::min();
+	float min_x = numeric_limits<float>::max();
+	float max_y = numeric_limits<float>::min();
+	float min_y = numeric_limits<float>::max();
+
+	for (Planetoid &p : planets) {
+		max_x = max(max_x, p._pos.x + p._r);
+		min_x = min(min_x, p._pos.x - p._r);
+		max_y = max(max_y, p._pos.y + p._r);
+		min_y = min(min_y, p._pos.y - p._r);
+	}
+
+	for (Planetoid &p : planets) {
+		p._pos.x -= min_x;
+		p._pos.y -= min_y;
+	}
+
+	_width = 1 + std::ceil(max_x - min_x);
+	_height = 1 + std::ceil(max_y - min_y);
 
 	_mapArray = new float[_height * _width];
 

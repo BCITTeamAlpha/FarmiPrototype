@@ -4,9 +4,7 @@
 
 struct Planetoid {
 	Planetoid(float x, float y, float r);
-	const float _x;
-	const float _y;
-	const glm::vec2 _pos;
+	glm::vec2 _pos;
 	const float _r;
 	const float _m;
 	float distanceFunction(int x, int y);

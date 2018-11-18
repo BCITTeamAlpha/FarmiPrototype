@@ -15,7 +15,7 @@ public:
 	PhysicsManager(std::vector<Planetoid> *p, Map *m);
 	void calcPhysics(float dTime);
 	void addObject(PhysicsObject *obj);
-	glm::vec2 genSpawnPos();
+	glm::vec2 genSpawnPos(float object_radius);
 
 	static const float VELOCITY_CAP;
 	static float normalizeAngle(float var);
@@ -24,7 +24,7 @@ public:
 	
 private:
 	glm::vec2 gravAcceleration(glm::vec2 pos, glm::vec2 &max_acc_contrib);
-	glm::vec2 posOnPlanet(int pInd);
+	glm::vec2 posOnPlanet(int pInd, float object_radius);
 	
 	std::vector<Planetoid> *planets;
 	std::vector<PhysicsObject*> objects;

@@ -1,10 +1,9 @@
 #include "Planetoid.h"
+#include "glm/glm.hpp"
 
 const float Planetoid::C_MASS = 50.0f;
 
 Planetoid::Planetoid(float x, float y, float r) : 
-	_x(x),
-	_y(y),
 	_r(r),
 	//Calculates the mass of a planetoid with similar density to earth based
 	//on the radius. Scale factor makes the radius more reasonable for a planet.
@@ -15,5 +14,5 @@ Planetoid::Planetoid(float x, float y, float r) :
 
 // signed distance of a point from the surface of the planetoid
 float Planetoid::distanceFunction(int x, int y) {
-	return sqrt((x - _x) * (x - _x) + (y - _y) * (y - _y)) - _r;
+	return glm::length(_pos - glm::vec2(x, y)) - _r;
 }
